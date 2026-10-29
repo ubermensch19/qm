@@ -6,7 +6,11 @@ the Porter CLI plus the upstream [app templates][porter-apps], with the
 [Porter deployment reference][porter-docs] covering the failure modes below.
 `qm init` does not copy those upstream files into a deployment repository.
 Read the reference online and download the app templates into a local
-`porter/apps/` directory before applying them.
+`porter/apps/` directory. Their `build` blocks require the full QM source tree,
+including `deploy/*/Dockerfile`. In a package deployment, replace each `build`
+block with an `image: {repository, tag}` block for the corresponding published
+QM service image before applying it. Pin all service images to the same published
+commit with Porter support; see [Hosting the qm surfaces][porter-surfaces].
 
 ## Preflight
 
